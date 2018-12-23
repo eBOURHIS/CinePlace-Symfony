@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Film{% endblock %}
+{% block title %}{{ parent() }} : Modifier Film{% endblock %}
 
 {% block body %}
-    <h1>Edit Film</h1>
+    <h1>Modifier le film {{film.Titre}}</h1>
 
-    {{ include('film/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('film_index') }}">back to list</a>
-
-    {{ include('film/_delete_form.html.twig') }}
+<div class="buttonlist">
+      {{ include('film/_form.html.twig', {'button_label': 'Update'}) }}
+      <a class="btn btn-warning" href="{{ path('film_index') }}">Retour</a>
+      {{ include('film/_delete_form.html.twig') }}
+</div>
 {% endblock %}

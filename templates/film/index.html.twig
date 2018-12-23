@@ -1,45 +1,55 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Film index{% endblock %}
+{% block title %}Film{% endblock %}
 
 {% block body %}
-    <h1>Film index</h1>
+    <h1>Liste des films</h1>
+    <html>
+    <body>
+      <div class="container crud-table" ng-app="myApp" ng-controller="namesCtrl">
+        <div class="clearfix">
+          <div class="form-inline pull-left">
+            <a class="btn btn-success" href="{{ path('film_new') }}">Ajouter un film</a>
+          </div>
+        </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Titre</th>
+              <th>Réalisateur</th>
+              <th>Date de sortie</th>
+              <th>Genre</th>
+              <th>Acteurs</th>
+              <th>Description</th>
+              <th>Actions</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Realisateur</th>
-                <th>Date_Parution</th>
-                <th>Genre</th>
-                <th>Acteurs</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for film in films %}
-            <tr>
-                <td>{{ film.id }}</td>
-                <td>{{ film.Titre }}</td>
-                <td>{{ film.Realisateur }}</td>
-                <td>{{ film.DateParution ? film.DateParution|date('Y-m-d') : '' }}</td>
-                <td>{{ film.Genre }}</td>
-                <td>{{ film.Acteurs }}</td>
-                <td>{{ film.Description }}</td>
-                <td>
-                    <a href="{{ path('film_show', {'id': film.id}) }}">show</a>
-                    <a href="{{ path('film_edit', {'id': film.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('film_new') }}">Create new</a>
+            {% for film in films %}
+              <tr ng-repeat="user in resultUser = (users | filter: {'name': searchName}) | orderBy: order">
+                    <td>{{ film.id }}</td>
+                    <td>{{ film.Titre }}</td>
+                    <td>{{ film.Realisateur }}</td>
+                    <td>{{ film.DateParution ? film.DateParution|date('Y-m-d') : '' }}</td>
+                    <td>{{ film.Genre }}</td>
+                    <td>{{ film.Acteurs }}</td>
+                    <td>{{ film.Description }}</td>
+                    <td>
+                        <a class="btn btn-warning" href="{{ path('film_show', {'id': film.id}) }}">voir</a>
+                        <a class="btn btn-primary" href="{{ path('film_edit', {'id': film.id}) }}">modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">no records found</td>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </body>
+  </html>
 {% endblock %}
