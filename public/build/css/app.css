@@ -1,0 +1,44 @@
+h1{
+	text-align: center;
+}
+th {
+  text-align: center;
+}
+
+.glyphicon {
+  margin-right: 10px;
+}
+
+.crud-table {
+  max-width: 800px;
+  padding: 40px 0;
+}
+
+.form-alert {
+  margin-top: 10px;
+}
+
+.form-inline {
+  margin-bottom: 20px;
+}
+
+#film div label, #film_Date_Parution label{
+	text-align: left;
+	width:100px;
+}
+
+#film div input{
+	text-align: left;
+	width:300px;
+	margin-top:10px;
+}
+
+#film div textarea{
+	resize:none;
+	width:300px;
+	height: 100px;
+}
+
+form, .buttonlist{
+	text-align: center;
+}

@@ -13,6 +13,7 @@
                 <th>Username</th>
                 <th>Password</th>
                 <th>Roles</th>
+                <th>Films</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -24,6 +25,7 @@
                 <td>{{ user.username }}</td>
                 <td>{{ user.password }}</td>
                 <td>{{ user.roles ? user.roles|join(', ') : '' }}</td>
+                <td>{{ user.films.count }}</td>
                 <td>
                     <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
                     <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
