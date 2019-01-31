@@ -3,21 +3,59 @@
 {% block title %}{{ parent() }} : Connexion{% endblock %}
 {% block body %}
 <body>
-    <form action="{{ path('login') }}" method="post">
-      <div class="form-group">
-        <label for="username">Username:</label>
-        <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" />
+ <form class="form-horizontal" role="form" action="{{ path('login') }}" method="post">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+            <center>
+                <h2>Connexion</h2>
+            </center>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="name">Login</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                        <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" required autofocus>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put name validation error messages here -->
+                        </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="password">Mot de passe</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group has-danger">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+                                <input class="form-control" type="password" id="password" name="_password" required/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+            <center>
+                <button type="submit" class="btn btn-success"><i class="fa fa-unlock-alt"></i> Connexion</button>
+                <br><br>
+                <p>Pas de compte ?<a href="/register"> <i class="fa fa-user"></i> Inscription</a></p>
+            </center>
 
-        <label for="password">Password:</label>
-        <input class="form-control" type="password" id="password" name="_password" />
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <input class="form-control" type="hidden" name="_target_path" value="/film" />
 
-        {#
-            If you want to control the URL the user
-            is redirected to on success (more details below)
-            <input class="form-control" type="hidden" name="_target_path" value="/account" />
-        #}
-      </div>
-      <button type="submit">login</button>
+            </div>
     </form>
 </body>
 {% endblock %}

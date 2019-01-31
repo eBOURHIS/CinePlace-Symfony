@@ -1,14 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User{% endblock %}
+{% block title %}Détails - {{user.username}}{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
-
+<center class="mb-3">
+    <h1>Informations sur {{user.username}}</h1>
+</center>
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>Identifiant</th>
                 <td>{{ user.id }}</td>
             </tr>
             <tr>
@@ -16,23 +17,23 @@
                 <td>{{ user.email }}</td>
             </tr>
             <tr>
-                <th>Username</th>
+                <th>Nom</th>
                 <td>{{ user.username }}</td>
             </tr>
             <tr>
-                <th>Password</th>
+                <th>Mot de passe</th>
                 <td>{{ user.password }}</td>
             </tr>
             <tr>
-                <th>Roles</th>
+                <th>Permissions</th>
                 <td>{{ user.roles ? user.roles|join(', ') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('user_index') }}">back to list</a>
+    <a class="btn btn-primary" href="{{ path('user_index') }}">Retour</a>
 
-    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+    <a class="btn btn-warning" href="{{ path('user_edit', {'id': user.id}) }}" title="Modifier"><i class="fas fa-edit">Modifier</i></a>
 
     {{ include('user/_delete_form.html.twig') }}
 {% endblock %}

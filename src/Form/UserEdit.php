@@ -7,16 +7,15 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class User1Type extends AbstractType
+class UserEdit extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('email')
             ->add('username')
-            ->add('password')
-            ->add('plainPassword')
             ->add('roles')
+            ->add('password')
             ->add('films');
     }
 
