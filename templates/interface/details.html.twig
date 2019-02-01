@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ asset('css/moviecard.css') }}" />
+
+<body onload="AfficheFilm({{ _id }})">
+  <div class="col-md-10 offset-md-1">
+    <div class="card card-outline-primary mb-3 text-center">
+      <div class="card-block">
+        <div class="container">
+          <div class="movie" id="movie-card">
+            <div class="movie__data" id="movie-data">
+              <div class="movie__poster">
+                <span class="movie__poster--fill">
+                  <img id="bgposter" src="" />
+                </span>
+                <span class="movie__poster--featured">
+                  <img id="poster" src="" />
+                </span>
+              </div>
+              <div class="movie__details">
+                <h2 id="title" class="movie__title"></h2>
+                <ul class="movie__tags list--inline">
+                  <li class="movie__rated" id="note"></li>
+                  <li class="movie__year" id="sortie"></li>
+                  <li class="movie__year" id="genre"></li>
+                </ul>
+                <p class="movie__plot" id="description"></p>
+                <div class="movie__credits">
+                  <strong style="float:left;">Durée :</strong><p id="duration"></p>
+                  <strong>Réalisateur :</strong><p id="director"></p>
+                  <strong>Producteur :</strong><p id="producer"></p>
+                  <strong>Acteurs :</strong><p id="actor"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <form method="POST" action="/film/add/" class="login active">
+            <input type="hidden" id="inputtitle" name="inputtitle"/>
+            <input type="hidden" id="inputDateBegin" name="inputDateBegin"/>
+            <input type="hidden" id="inputgenre" name="inputgenre"/>
+            <input type="hidden" id="inputdesc"  name="inputdesc"/>
+            <input type="hidden" id="inputreal" name="inputreal"/>
+            <button type="submit" class="btn btn-success">Ajouter à la liste</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.5.10/prop-types.min.js'></script>
+  <script src="{{ asset('js/moviecard.js') }}"></script>
+{% endblock %}
