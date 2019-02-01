@@ -15,6 +15,9 @@ security:
                 login_path: login
                 check_path: login
                 csrf_token_generator: security.csrf.token_manager
+            logout:
+                path: logout
+                target: /login
 
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
