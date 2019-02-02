@@ -86,7 +86,7 @@ function getCred (id) {
 
       document.getElementById('inputreal').value = document.getElementById('director').innerHTML
       // document.getElementById("Producteur").value = document.getElementById('producer').innerHTML;
-      // document.getElementById("Acteur").value = document.getElementById('actor').innerHTML;
+      document.getElementById("Acteur").value = document.getElementById('actor').innerHTML;
     }
   })
 }
