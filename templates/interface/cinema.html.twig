@@ -10,7 +10,7 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.5.10/prop-types.min.js'></script>
 
   {% block javascripts %}
-    {{ encore_entry_script_tags('searchfilm') }}
+      <script src='{{ asset("build/js/searchfilm.js")}}'></script>
   {% endblock %}
 
 {% endblock %}
