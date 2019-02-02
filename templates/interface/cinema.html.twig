@@ -11,9 +11,13 @@
 
   {% block javascripts %}
     {{ parent() }}
-    {{ encore_entry_script_tags('js/app') }}
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.5.10/prop-types.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     {{ encore_entry_script_tags('js/searchfilm') }}
-    {{ encore_entry_script_tags('js/moviecard') }}
+    {# {{ encore_entry_script_tags('js/app') }}
+    {{ encore_entry_script_tags('js/moviecard') }} #}
 {% endblock %}
 
 {% endblock %}
