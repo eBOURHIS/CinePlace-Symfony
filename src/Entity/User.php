@@ -37,12 +37,6 @@ class User implements UserInterface
     private $username;
 
     /**
-     * @Assert\NotBlank()
-     * @Assert\Length(max=4096)
-     */
-    private $plainPassword;
-
-    /**
      * The below length depends on the "algorithm" you use for encoding
      * the password, but this works well with bcrypt.
      *
@@ -85,16 +79,6 @@ class User implements UserInterface
     public function setUsername($username)
     {
         $this->username = $username;
-    }
-
-    public function getPlainPassword()
-    {
-        return $this->plainPassword;
-    }
-
-    public function setPlainPassword($password)
-    {
-        $this->plainPassword = $password;
     }
 
     public function getPassword()
