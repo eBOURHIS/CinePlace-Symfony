@@ -84,7 +84,6 @@ class FilmController extends AbstractController
             $entityManager->remove($film);
             $entityManager->flush();
         }
-
         return $this->redirectToRoute('film_index');
     }
 }

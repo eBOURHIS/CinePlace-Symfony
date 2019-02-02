@@ -31,8 +31,9 @@
                     <td>{{ film.Acteurs }}</td>
                     <td>{{ film.Description }}</td>
                     <td>
-                        <a class="btn btn-info" href="{{ path('film_show', {'id': film.id}) }}" title="Voir"><i class="fas fa-eye"></i> Voir</a>
-                    <a class="btn btn-warning" href="{{ path('film_edit', {'id': film.id}) }}" title="Modifier"><i class="fas fa-edit"></i> Modifier</a>
+                    <a class="btn btn-info" href="{{ path('film_show', {'id': film.id}) }}" title="Voir"><i class="fas fa-eye"></i></a>
+                    <a class="btn btn-warning" href="{{ path('film_edit', {'id': film.id}) }}" title="Modifier"><i class="fas fa-edit"></i></a>
+                    {{ include('film/_delete_form.html.twig') }}
                 </td>
                 </tr>
             {% else %}
