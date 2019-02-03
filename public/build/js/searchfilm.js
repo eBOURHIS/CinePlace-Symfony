@@ -1,4 +1,5 @@
-var _createClass = (function () { function defineProperties (target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor) } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor } }())
+(function() {
+  var _createClass = (function () { function defineProperties (target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor) } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor } }())
 
 function _classCallCheck (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function') } }
 
@@ -23,7 +24,7 @@ var Movie = function Movie (props) {
   return React.createElement('div', { className: 'card h-100' },
     React.createElement('img', { src: 'https://image.tmdb.org/t/p/w185' + props.poster_path, className: 'card-img-top' }),
     React.createElement('h4', { className: 'card-body' },
-      React.createElement('a', { className: 'card-title', href: 'fiche/' + props.id }, props.title)),
+    React.createElement('a', { className: 'card-title', href: 'details/' + props.id }, props.title)),
     React.createElement('small', { className: 'card-footer' }, grade))
 }
 
@@ -180,4 +181,7 @@ var App = (function (_React$Component) {
   return App
 }(React.Component))
 
+console.log(document.body);
 ReactDOM.render(React.createElement(App, null), document.getElementById('root'))
+
+})()
