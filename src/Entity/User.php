@@ -50,7 +50,7 @@ class User implements UserInterface
     private $roles;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Film", inversedBy="users")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Film", mappedBy="users")
      */
     private $films;
 
@@ -107,6 +107,22 @@ class User implements UserInterface
     {
     }
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function __toString() {
+        return $this->username;
+    }
+
     /**
      * @return Collection|Film[]
      */
@@ -119,6 +135,7 @@ class User implements UserInterface
     {
         if (!$this->films->contains($film)) {
             $this->films[] = $film;
+            $film->addUser($this);
         }
 
         return $this;
@@ -128,19 +145,8 @@ class User implements UserInterface
     {
         if ($this->films->contains($film)) {
             $this->films->removeElement($film);
+            $film->removeUser($this);
         }
-
-        return $this;
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
 
         return $this;
     }

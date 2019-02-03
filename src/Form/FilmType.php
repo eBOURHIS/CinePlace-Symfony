@@ -18,6 +18,7 @@ class FilmType extends AbstractType
             ->add('Genre')
             ->add('Acteurs')
             ->add('Description')
+            ->add('users')
         ;
     }
 

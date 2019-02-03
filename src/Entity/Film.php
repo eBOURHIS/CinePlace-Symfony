@@ -51,7 +51,7 @@ class Film
     private $Description;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="films")
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="films")
      */
     private $users;
 
@@ -137,6 +137,10 @@ class Film
         return $this;
     }
 
+    public function __toString() {
+        return $this->Titre;
+    }
+
     /**
      * @return Collection|User[]
      */
@@ -149,7 +153,6 @@ class Film
     {
         if (!$this->users->contains($user)) {
             $this->users[] = $user;
-            $user->addFilm($this);
         }
 
         return $this;
@@ -159,13 +162,8 @@ class Film
     {
         if ($this->users->contains($user)) {
             $this->users->removeElement($user);
-            $user->removeFilm($this);
         }
 
         return $this;
-    }
-
-    public function __toString() {
-        return $this->Titre;
     }
 }
