@@ -9,14 +9,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/film")
+ * @IsGranted("IS_AUTHENTICATED_FULLY")
  */
 class FilmController extends AbstractController
 {
     /**
      * @Route("/", name="film_index", methods={"GET"})
+     * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
     public function index(FilmRepository $filmRepository): Response
     {
@@ -25,6 +28,7 @@ class FilmController extends AbstractController
 
     /**
      * @Route("/new", name="film_new", methods={"GET","POST"})
+     * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
     public function new(Request $request): Response
     {
@@ -37,6 +41,9 @@ class FilmController extends AbstractController
             $entityManager->persist($film);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Film ajouté à votre liste !');
+
+
             return $this->redirectToRoute('film_index');
         }
 
@@ -48,6 +55,7 @@ class FilmController extends AbstractController
 
     /**
      * @Route("/{id}", name="film_show", methods={"GET"})
+     * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
     public function show(Film $film): Response
     {
@@ -56,6 +64,7 @@ class FilmController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="film_edit", methods={"GET","POST"})
+     * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
     public function edit(Request $request, Film $film): Response
     {
@@ -64,6 +73,9 @@ class FilmController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash('info', 'Film modifié !');
+
 
             return $this->redirectToRoute('film_index', ['id' => $film->getId()]);
         }
@@ -76,6 +88,7 @@ class FilmController extends AbstractController
 
     /**
      * @Route("/{id}", name="film_delete", methods={"DELETE"})
+     * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
     public function delete(Request $request, Film $film): Response
     {
@@ -84,6 +97,9 @@ class FilmController extends AbstractController
             $entityManager->remove($film);
             $entityManager->flush();
         }
+
+        $this->addFlash('warning', 'Film supprimé !');
+
         return $this->redirectToRoute('film_index');
     }
 }

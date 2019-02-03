@@ -31,6 +31,7 @@ class UserController extends AbstractController
 
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
@@ -51,6 +52,8 @@ class UserController extends AbstractController
             return $this->redirectToRoute('user_index');
         }
 
+        $this->addFlash('success', 'Utilisateur ajouté !');
+
         return $this->render('user/new.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
@@ -59,6 +62,7 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}", name="user_show", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function show(User $user): Response
     {
@@ -80,6 +84,8 @@ class UserController extends AbstractController
             return $this->redirectToRoute('user_index', ['id' => $user->getId()]);
         }
 
+        $this->addFlash('info', 'Utilisateur modifié !');
+
         return $this->render('user/edit.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
@@ -88,6 +94,7 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}", name="user_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, User $user): Response
     {
@@ -96,6 +103,8 @@ class UserController extends AbstractController
             $entityManager->remove($user);
             $entityManager->flush();
         }
+
+        $this->addFlash('danger', 'Utilisateur supprimé !');
 
         return $this->redirectToRoute('user_index');
     }

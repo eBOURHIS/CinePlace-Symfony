@@ -45,6 +45,8 @@ class InterfaceController extends AbstractController
             $entityManager->persist($film);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Film ajouté à votre liste !');
+
             return $this->redirectToRoute('details');
         }
 
