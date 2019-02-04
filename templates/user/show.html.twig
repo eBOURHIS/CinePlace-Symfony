@@ -28,12 +28,13 @@
                 <th>Permissions</th>
                 <td>{{ user.roles ? user.roles|join(', ') : '' }}</td>
             </tr>
+            <tr>
+                <th>Mes films</th>
+                <td>{{ user.films|join(', ') }}</td>
+            </tr>
         </tbody>
     </table>
 
-    <a class="btn btn-primary" href="{{ path('user_index') }}">Retour</a>
+    <a class="btn btn-primary" href="{{ path('user_index') }}"><i class="fas fa-backward"></i></a>
 
-    <a class="btn btn-warning" href="{{ path('user_edit', {'id': user.id}) }}" title="Modifier"><i class="fas fa-edit">Modifier</i></a>
-
-    {{ include('user/_delete_form.html.twig') }}
 {% endblock %}

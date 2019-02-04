@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * @Route("/user")
@@ -19,6 +20,7 @@ class UserController extends AbstractController
 {
     /**
      * @Route("/", name="user_index", methods={"GET"})
+     * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
     public function index(): Response
     {
@@ -31,7 +33,6 @@ class UserController extends AbstractController
 
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
-     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
@@ -62,7 +63,6 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}", name="user_show", methods={"GET"})
-     * @IsGranted("ROLE_ADMIN")
      */
     public function show(User $user): Response
     {
@@ -71,7 +71,6 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
-     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, User $user): Response
     {
@@ -94,18 +93,20 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}", name="user_delete", methods={"DELETE"})
-     * @IsGranted("ROLE_ADMIN")
      */
-    public function delete(Request $request, User $user): Response
+    public function delete(Request $request, User $user, Session $session): Response
     {
+        $session = $this->get('session');
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($user);
             $entityManager->flush();
         }
+        $session = $this->get('session');
+        $session = new Session();
+        $session->invalidate();
+        $this->addFlash('danger', 'Votre compte a été supprimé !');
+        return $this->redirectToRoute('login');
 
-        $this->addFlash('danger', 'Utilisateur supprimé !');
-
-        return $this->redirectToRoute('user_index');
     }
 }

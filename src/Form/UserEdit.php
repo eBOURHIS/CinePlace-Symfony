@@ -13,10 +13,7 @@ class UserEdit extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('username')
-            ->add('roles')
-            ->add('password')
-            ->add('films');
+            ->add('username');
     }
 
     public function configureOptions(OptionsResolver $resolver)

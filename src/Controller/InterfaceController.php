@@ -47,7 +47,7 @@ class InterfaceController extends AbstractController
 
             $this->addFlash('success', 'Film ajouté à votre liste !');
 
-            return $this->redirectToRoute('details');
+            return $this->redirectToRoute('film_index');
         }
 
         return $this->redirectToRoute('cinema');
