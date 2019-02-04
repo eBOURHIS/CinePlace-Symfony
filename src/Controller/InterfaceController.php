@@ -48,7 +48,10 @@ class InterfaceController extends AbstractController
             return $this->redirectToRoute('details');
         }
 
-        return $this->redirectToRoute('cinema');
-    }
+        return $this->render('interface/detail.html.twig', [
+            'film' => $film,
+            'form' => $form->createView(),
+        ]);
 
+      }
 }

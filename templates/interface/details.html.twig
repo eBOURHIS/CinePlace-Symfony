@@ -34,15 +34,17 @@
               </div>
             </div>
           </div>
-          <form method="POST" action="/add" class="login active">
-            <input type="hidden" id="inputtitle" name="inputtitle"/>
-            <input type="hidden" id="inputDateBegin" name="inputDateBegin"/>
-            <input type="hidden" id="inputgenre" name="inputgenre"/>
-            <input type="hidden" id="inputdesc"  name="inputdesc"/>
-            <input type="hidden" id="inputactor" name="inputactor"/>
-            <input type="hidden" id="inputreal" name="inputreal"/>
-            <button type="submit" class="btn btn-success">Ajouter à la liste</button>
-          </form>
+
+          {{ form_start(form) }}
+            {{ form_widget(form.Titre, {'attr': {'class': 'hidden'}}) }}
+            {{ form_widget(form.Realisateur, {'attr': {'class': 'hidden'}}) }}
+            {{ form_widget(form.Date_Parution, {'attr': {'class': 'hidden'}}) }}
+            {{ form_widget(form.Genre, {'attr': {'class': 'hidden'}}) }}
+            {{ form_widget(form.Acteurs, {'attr': {'class': 'hidden'}}) }}
+            {{ form_widget(form.Description, {'attr': {'class': 'hidden'}}) }}
+            <button class="btn btn-primary">{{ button_label|default('Ajouter à la liste') }}</button>
+          {{ form_end(form) }}
+
         </div>
       </div>
     </div>
