@@ -55,7 +55,7 @@ class User implements UserInterface
     private $films;
 
     public function __construct() {
-        $this->roles = array('ROLE_USER');
+        $this->roles = array('ROLE_ADMIN');
         $this->films = new ArrayCollection();
     }
 
